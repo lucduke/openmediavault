@@ -4,14 +4,13 @@
 # Rejoins moi sur Youtube: https://www.youtube.com/channel/UCsJ-FHnCEvtV4m3-nTdR5QQ
 
 # USAGE
-# 
+# https://raw.githubusercontent.com/lucduke/openmediavault/main/qemu-agent.sh | bash
 
 # SOURCES
-# 
+ 
 
 # VARIABLES
-distribution=$(grep -F "VERSION_CODENAME=" /etc/os-release | cut -d= -f2)
-timestamp=$(date +%s)
+
 
 echo "----------------------------------------------------------------"
 echo "Debut du script"
