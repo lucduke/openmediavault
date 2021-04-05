@@ -11,7 +11,7 @@ Série de scripts permettant de personnaliser l'installation d'OMV 5.0
 Pour lancer le script
 
 ```bash
-wget -q -O - https://raw.githubusercontent.com/lucduke/proxmox/main/pve-no-subscription.sh | bash
+wget -q -O - https://raw.githubusercontent.com/lucduke/openmediavault/main/qemu-agent.sh | bash
 ```
 
 ### Installation des OMV-Extra
