@@ -6,7 +6,7 @@
 
 Série de scripts permettant de personnaliser l'installation d'OMV 5.0
 
-### Maj des dépôts / désactivation du pop-up de souscription / optimisation du SWAP
+### Installation QEMU-AGENT
 
 Pour lancer le script
 
