@@ -24,6 +24,12 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
 
 
 
+## Paramétrage des partages SMB/CIFS
+
+[Lien vers l'article](./partages_cifs.md)
+
+
+
 ## Sources
 
 https://www.openmediavault.org/
