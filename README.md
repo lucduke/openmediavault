@@ -30,6 +30,12 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
 
 
 
+## Installation du VPN Tailscale
+
+[Lien vers l'article](./tailscale.md)
+
+
+
 ## Sources
 
 https://www.openmediavault.org/
