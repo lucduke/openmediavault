@@ -8,7 +8,7 @@ Par ailleurs, le client tailscale est disponible sur de nombreuses plateformes (
 
 ## Tutoriel vidéo
 
-[Liens vers la vidéo Youtube](https://github.com/lucduke/openmediavault.git)
+[Liens vers la vidéo Youtube](https://youtu.be/vDWi43hoqGA)
 
 
 
