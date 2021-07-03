@@ -25,7 +25,7 @@ Cf. le tutoriel vidéo
 ```bash
 # Ajout du dépôt
 curl -fsSL https://pkgs.tailscale.com/stable/debian/buster.gpg | sudo apt-key add -
-curl -fsSL https://pkgs.tailscale.com/stable/debian/buster.list | sudo tee /etc/apt
+curl -fsSL https://pkgs.tailscale.com/stable/debian/buster.list | sudo tee /etc/apt/sources.list.d/tailscale.list
 
 # Installation
 sudo apt update && sudo apt install -y tailscale
