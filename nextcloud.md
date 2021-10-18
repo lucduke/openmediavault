@@ -17,7 +17,7 @@ Dans cet article, nous verrons comment y accéder en HTPPS via le reverse proxy 
 
 ## Tutoriel vidéo
 
-Lien vers la vidéo Youtube
+[Lien vers la vidéo Youtube](https://youtu.be/h-oINxS8I6w)
 
 
 
