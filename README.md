@@ -42,6 +42,12 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
 
 
 
+## Personnalisation de Nextcloud
+
+[Lien vers l'article](./nextcloud-personnalisation.md)
+
+
+
 ## Sources
 
 https://www.openmediavault.org/
