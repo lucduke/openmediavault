@@ -1,0 +1,58 @@
+# Installation de podgrab
+
+## A propos
+
+Lien vers le projet : https://github.com/akhilrex/podgrab
+
+Pour récupérer des podcasts : https://podcasts-francais.fr
+
+
+
+## Tutoriel vidéos
+
+
+
+
+
+## Le fichier de configuration docker-compose
+
+Pour celles et ceux souhaitant créer le conteneur via la saisie d'un stack dans Portainer, voici le détail du fichier de configuration utilisé
+
+```dockerfile
+version: "3.8"
+
+networks:
+  frontend:
+    # A ajouter si ce docker network existe deja dans un autre fichier docker-compose
+    # external: true
+
+services:
+
+  podgrab:
+    container_name: podgrab
+    environment:
+      - CHECK_FREQUENCY=240 # Fréquence de rafraichissement en min
+      - PASSWORD=password   # Optionel, le username = podgrab
+    image: akhilrex/podgrab
+    ports:
+      - 7080:8080 # Modifier à 7080 car mon port 8080 est déjà utilisé 
+    restart: unless-stopped
+    volumes:
+      - /path/to/config:/config
+      - /path/to/data:/assets
+    networks:
+      - frontend
+```
+
+Pour créer le conteneur et le lancer
+
+````bash
+sudo docker-compose up -d
+````
+
+
+
+## On se connecte sur notre conteneur podgrab
+
+http://<host-IP>:7080
+

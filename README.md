@@ -48,6 +48,12 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
 
 
 
+## Installation de Podgrab
+
+[Lien vers l'article](./podgrab.md)
+
+
+
 ## Sources
 
 https://www.openmediavault.org/
