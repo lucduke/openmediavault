@@ -2,6 +2,10 @@
 
 ## A propos
 
+Podgrab est une application auto-hébergée qui permet de suivre, rechercher des podcast et télécharger les épisodes dans un répertoire de votre choix au format MP3
+
+
+
 Lien vers le projet : https://github.com/akhilrex/podgrab
 
 Pour récupérer des podcasts : https://podcasts-francais.fr
@@ -10,7 +14,7 @@ Pour récupérer des podcasts : https://podcasts-francais.fr
 
 ## Tutoriel vidéos
 
-
+[Lien vers la vidéo](https://youtu.be/_bIoaMMGURQ)
 
 
 
