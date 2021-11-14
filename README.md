@@ -54,6 +54,12 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
 
 
 
+## Installation de Deunhealth
+
+[Lien vers l'article](./deunhealth.md)
+
+
+
 ## Sources
 
 https://www.openmediavault.org/
