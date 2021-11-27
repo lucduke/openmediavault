@@ -55,3 +55,20 @@ Cf. le tutoriel vidéo
 ## Ajout d'utilisateurs
 
 Cf. le tutoriel vidéo
+
+
+
+## Astuce
+
+On peut automatiser l'installation périodique de smbclient dans le conteneur nextcloud via Anacron
+
+```shell
+sudo nano /etc/anacrontab
+```
+
+Puis saisir le texte suivant
+
+```tex
+1       10      install.smb.nextcloud   sudo docker exec -it nextcloud-app apt update&&apt install smbclient -y
+```
+
