@@ -68,7 +68,7 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
 
 ## Installation de Diun
 
-[Lien vers l'article](/.diun.md)
+[Lien vers l'article](/diun.md)
 
 
 
