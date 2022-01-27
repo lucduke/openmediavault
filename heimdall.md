@@ -24,7 +24,7 @@ version: "3.8"
 services:
   heimdall:
     container_name: heimdall
-    image: lscr.io/linuxserver/heimdall
+    image: lscr.io/linuxserver/heimdall:latest
     labels:
       - deunhealth.restart.on.unhealthy=true
     environment:
