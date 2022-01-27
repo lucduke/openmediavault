@@ -31,7 +31,7 @@ services:
       - LOG_LEVEL=info
       - HEALTH_SERVER_ADDRESS=127.0.0.1:9999
       - TZ=Europe/Paris
-    image: qmcgaw/deunhealth
+    image: qmcgaw/deunhealth:latest
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
