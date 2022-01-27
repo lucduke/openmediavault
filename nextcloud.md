@@ -84,7 +84,7 @@ services:
       - MYSQL_HOST=nextcloud-db
       - OVERWRITEPROTOCOL=https #pour permettre le bon fonctionnement du client Windows/Linux
       - NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.dukeofputeauxyt.duckdns.org
-    image: nextcloud
+    image: nextcloud:latest
     ports:
       - 8070:80
     restart: unless-stopped
@@ -102,7 +102,7 @@ services:
       - MYSQL_PASSWORD=mysqlpwd
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
-    image: mariadb
+    image: mariadb:latest
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --skip-innodb-read-only-compressed
     restart: unless-stopped
     volumes:
