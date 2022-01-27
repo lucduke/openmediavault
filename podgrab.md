@@ -37,7 +37,7 @@ services:
     environment:
       - CHECK_FREQUENCY=240 # Fréquence de rafraichissement en min
       - PASSWORD=password   # Optionel, le username = podgrab
-    image: akhilrex/podgrab
+    image: akhilrex/podgrab:latest
     ports:
       - 7080:8080 # Modifier à 7080 car mon port 8080 est déjà utilisé 
     restart: unless-stopped
