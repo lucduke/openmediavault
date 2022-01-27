@@ -29,7 +29,7 @@ services:
     labels:
       - deunhealth.restart.on.unhealthy=true
       - diun.enable=true
-      - diun.watch_repo=true
+      - diun.watch_repo=true # A ajouter si vous souhaitez surveiller toutes les versions de cette image
     command: serve
     environment:
       - TZ=Europe/Paris
