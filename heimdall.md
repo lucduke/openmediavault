@@ -27,7 +27,8 @@ services:
     image: lscr.io/linuxserver/heimdall:latest
     labels:
       - deunhealth.restart.on.unhealthy=true
-    environment:
+      - diun.enable=true
+    environment
       - PUID=998 #id admin 
       - PGID=100 #gid users
       - TZ=Europe/Paris

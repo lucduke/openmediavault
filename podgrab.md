@@ -22,7 +22,7 @@ Pour récupérer des podcasts : https://podcasts-francais.fr
 
 Pour celles et ceux souhaitant créer le conteneur via la saisie d'un stack dans Portainer, voici le détail du fichier de configuration utilisé
 
-```dockerfile
+```yaml
 version: "3.8"
 
 networks:
@@ -38,6 +38,9 @@ services:
       - CHECK_FREQUENCY=240 # Fréquence de rafraichissement en min
       - PASSWORD=password   # Optionel, le username = podgrab
     image: akhilrex/podgrab:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
     ports:
       - 7080:8080 # Modifier à 7080 car mon port 8080 est déjà utilisé 
     restart: unless-stopped

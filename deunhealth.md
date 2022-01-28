@@ -27,6 +27,7 @@ services:
     container_name: deunhealth
     labels:
       - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
     environment:
       - LOG_LEVEL=info
       - HEALTH_SERVER_ADDRESS=127.0.0.1:9999

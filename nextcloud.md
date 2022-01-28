@@ -64,6 +64,9 @@ services:
       - UMASK=022 #rwxr-xr-x
       - CLEAN_TMP_DIR=1 #All files in the /tmp directory are delete during the container startup
     image: jlesage/nginx-proxy-manager:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
     ports:
       - 4443:4443/tcp
       - 8080:8080/tcp
@@ -85,6 +88,9 @@ services:
       - OVERWRITEPROTOCOL=https #pour permettre le bon fonctionnement du client Windows/Linux
       - NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.dukeofputeauxyt.duckdns.org
     image: nextcloud:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
     ports:
       - 8070:80
     restart: unless-stopped
@@ -103,6 +109,9 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
     image: mariadb:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --skip-innodb-read-only-compressed
     restart: unless-stopped
     volumes:
