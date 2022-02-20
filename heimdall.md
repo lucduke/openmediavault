@@ -28,7 +28,7 @@ services:
     labels:
       - deunhealth.restart.on.unhealthy=true
       - diun.enable=true
-    environment
+    environment:
       - PUID=998 #id admin 
       - PGID=100 #gid users
       - TZ=Europe/Paris
