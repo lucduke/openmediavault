@@ -33,7 +33,7 @@ services:
       - PGID=100 #gid users
       - TZ=Europe/Paris
     volumes:
-      - /path/to/docker_data/heimdall/config:/config
+      - /path/to/docker-data/heimdall/config:/config
     ports:
       - 5080:80
       - 5443:443
