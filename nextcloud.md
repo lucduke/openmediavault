@@ -100,6 +100,8 @@ services:
     networks:
       - frontend
       - backend
+    depends_on:
+      - nextcloud-db
 
   nextcloud-db:
     container_name: nextcloud-db
