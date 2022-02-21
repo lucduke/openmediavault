@@ -69,8 +69,8 @@ sudo nano /etc/anacrontab
 Puis saisir le texte suivant
 
 ```tex
-1	10	container.apt.upd	docker exec -it nextcloud-app apt update
-1	12	container.apt.inst.smblient	docker exec -it nextcloud-app apt install smbclient -y
+1	10	container.apt.upd	docker exec nextcloud-app apt update
+1	12	container.apt.inst.smblient	docker exec nextcloud-app apt install smbclient -y
 1	14	container.restart	docker restart nextcloud-app
 ```
 
