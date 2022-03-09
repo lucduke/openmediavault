@@ -72,6 +72,12 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
 
 
 
+## Installation de Watchtower
+
+[Lien vers l'article](/watchtower.md)
+
+
+
 ## Sources
 
 https://www.openmediavault.org/
