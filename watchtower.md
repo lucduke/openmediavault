@@ -46,7 +46,6 @@ services:
       - WATCHTOWER_NOTIFICATION_EMAIL_DELAY=2
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /home/pi/docker-data/watchtower/config/:/config/
     restart: unless-stopped
 ```
 
@@ -58,3 +57,6 @@ sudo docker-compose up -d
 
 
 
+## Liens utiles
+
+Syntaxe CRON : https://crontab.guru
