@@ -27,6 +27,7 @@ services:
     labels:
       - deunhealth.restart.on.unhealthy=true
       - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true # A ajouter si vous souhaitez que watchtower mette à jour ce conteneur
     environment:
       - TZ=Europe/Paris
       - WATCHTOWER_CLEANUP=true
