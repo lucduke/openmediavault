@@ -1,16 +1,12 @@
-# Heimdall
-
-
+# Installation de DuckDNS
 
 ## A propos
 
-Heimdall est un portail web facilitant l'accès aux différents services installés sur son serveur
 
 
+## Tutoriel vidéos
 
-Lien vers le projet : https://heimdall.site
-
-Lien vers l'image : https://hub.docker.com/r/linuxserver/heimdall/ 
+[Lien](https://youtu.be/ZzcffHMyUmQ)
 
 
 
@@ -18,32 +14,34 @@ Lien vers l'image : https://hub.docker.com/r/linuxserver/heimdall/
 
 Pour celles et ceux souhaitant créer le conteneur via la saisie d'un stack dans Portainer, voici le détail du fichier de configuration utilisé
 
-```dockerfile
+```yaml
 version: "3.8"
 
 services:
-  heimdall:
-    container_name: heimdall
-    image: lscr.io/linuxserver/heimdall:latest
+
+  duckdns:
+    container_name: duckdns
+    image: ghcr.io/linuxserver/duckdns:amd64-latest
     labels:
       - deunhealth.restart.on.unhealthy=true
       - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
     environment:
-      - PUID=1000 #id my user 
-      - PGID=1000 #gid my user
+      - PUID=0 #ID root
+      - PGID=0 #GID root
       - TZ=Europe/Paris
+      - SUBDOMAINS=yourSubDomain
+      - TOKEN=yourToken
     volumes:
-      - /path/to/docker-data/heimdall/config:/config
-    ports:
-      - 5080:80
-      - 5443:443
+      - /path/to/docker-data/duckdns/config:/config
     restart: unless-stopped
     networks:
       - christophe_frontend
 
 networks:
   christophe_frontend:
-    external: true
+    # A ajouter si ce docker network existe deja
+    #external: true
 ```
 
 Pour créer le conteneur et le lancer
@@ -51,6 +49,3 @@ Pour créer le conteneur et le lancer
 ````bash
 sudo docker-compose up -d
 ````
-
-
-

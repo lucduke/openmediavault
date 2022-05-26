@@ -30,9 +30,45 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
 
 
 
-## Installation du VPN Tailscale
+## Installation de Bitwarden
 
-[Lien vers l'article](./tailscale.md)
+[Lien vers l'article](./bitwarden.md)
+
+
+
+## Installation de Deunhealth
+
+[Lien vers l'article](./deunhealth.md)
+
+
+
+## Installation de Diun
+
+[Lien vers l'article](./diun.md)
+
+
+
+## Installation de Duplicati
+
+[Lien vers l'article](./duplicati.md)
+
+
+
+## Installation de DuckDNS
+
+[Lien vers l'article](./duckdns.md)
+
+
+
+## Installation de Heimdall
+
+[Lien vers l'article](./heimdall.md)
+
+
+
+## Installation de Jellyfin
+
+[Lien vers l'article](./jellyfin.md)
 
 
 
@@ -48,33 +84,33 @@ wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/maste
 
 
 
+## Installation de NGINX-Proxy-Manager
+
+[Lien vers l'article](./nginx-proxy-manager.md)
+
+
+
+## Installation de Photoprism
+
+[Lien vers l'article](./photoprism.md)
+
+
+
 ## Installation de Podgrab
 
 [Lien vers l'article](./podgrab.md)
 
 
 
-## Installation de Deunhealth
+## Installation du VPN Tailscale
 
-[Lien vers l'article](./deunhealth.md)
-
-
-
-## Installation de Heimdall
-
-[Lien vers l'article](./heimdall.md)
-
-
-
-## Installation de Diun
-
-[Lien vers l'article](/diun.md)
+[Lien vers l'article](./tailscale.md)
 
 
 
 ## Installation de Watchtower
 
-[Lien vers l'article](/watchtower.md)
+[Lien vers l'article](./watchtower.md)
 
 
 
