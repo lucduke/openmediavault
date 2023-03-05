@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # The Duke Of Puteaux
 # Rejoins moi sur Youtube: https://www.youtube.com/channel/UCsJ-FHnCEvtV4m3-nTdR5QQ
 
