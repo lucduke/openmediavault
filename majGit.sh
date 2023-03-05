@@ -14,7 +14,8 @@ echo "Debut du script"
 echo "----------------------------------------------------------------"
 
 # MAJ  Github
-echo "MAJ Repo AnsibleDesktop"
+git pull
+echo "MAJ Repo OpenMediaVault"
 git add .
 git commit -m "Update"
 git push origin main
