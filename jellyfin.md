@@ -1,6 +1,6 @@
 # Installation de Jellyfin
 
-## A propos
+## A propos1
 
 Jellyfin est une media center, gratuit et open source, concurrent de Plex et Emby dont il est un fork
 
