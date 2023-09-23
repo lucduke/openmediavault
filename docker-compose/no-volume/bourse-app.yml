@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+
+  bourse-app:
+    container_name: bourse-app
+    image: bourse-app:latest
+    restart: unless-stopped
+    networks:
+      - frontend
+    
+networks:
+  frontend:
+    external: true

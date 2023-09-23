@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+
+  deemix:
+    container_name: deemix
+    image: registry.gitlab.com/bockiii/deemix-docker:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - ARL=<token>
+      - UMASK_SET=022 #rwxr-xr-x
+    volumes:
+      - nfs_downloads:/downloads
+      - nfs_config:/config
+    ports:
+      - 6595:6595
+    restart: unless-stopped
+    networks:
+      - frontend
+
+volumes:
+  nfs_downloads:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/raid/nfs/docker/deemix_nfs_downloads"
+  nfs_config:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/raid/nfs/docker/deemix_nfs_config"
+
+networks:
+  frontend:
+    external: true

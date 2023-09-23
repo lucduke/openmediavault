@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+
+  ytube-app:
+    container_name: ytube-app
+    image: ytube-app:latest
+    volumes:
+      - /mnt/media/videos/youtube-dl:/mnt/media/videos/youtube-dl
+    restart: unless-stopped
+    networks:
+      - frontend
+    
+networks:
+  frontend:
+    external: true

@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+  mariadb-10.5:
+    container_name: mariadb-photoview
+    image: mariadb:10.5
+    restart: unless-stopped
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - MYSQL_DATABASE=photoview
+      - MYSQL_USER=photoview
+      - MYSQL_PASSWORD=photosecret
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+    volumes:
+      - nfs_mariadb:/var/lib/mysql
+    networks:
+      - backend
+
+  photoview:
+    container_name: photoview
+    image: viktorstrate/photoview
+    restart: unless-stopped
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    ports:
+      - 8080:80
+    depends_on:
+      - mariadb-10.5
+    environment:
+      - PHOTOVIEW_DATABASE_DRIVER=mysql
+      - PHOTOVIEW_MYSQL_URL=photoview:photosecret@tcp(mariadb-10.5)/photoview
+      - PHOTOVIEW_LISTEN_IP=photoview
+      - PHOTOVIEW_LISTEN_PORT=80
+      - PHOTOVIEW_MEDIA_CACHE=/app/cache
+    volumes:
+      - nfs_cache:/app/cache
+      - nfs_photos:/photos:ro
+    networks:
+      - frontend
+      - backend
+
+volumes:
+  nfs_mariadb:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/raid/nfs/docker/photoview_nfs_mariadb"
+  nfs_cache:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/no-raid/nfs1/docker/photoview_nfs_cache"
+  nfs_photos:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/no-raid/nfs1/docker/photoview_nfs_photos"
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true

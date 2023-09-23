@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+
+  duckdns:
+    container_name: duckdns
+    image: ghcr.io/linuxserver/duckdns:amd64-latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - PUID=0 #ID root
+      - PGID=0 #GID root
+      - TZ=Europe/Paris
+      - SUBDOMAINS=<my_duckdns_subdomain>
+      - TOKEN=<token>
+    volumes:
+      - duckdns_config:/config
+    restart: unless-stopped
+    networks:
+      - frontend
+
+volumes:
+  duckdns_config:
+
+networks:
+  frontend:
+    external: true

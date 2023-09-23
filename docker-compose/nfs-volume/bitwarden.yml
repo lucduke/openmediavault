@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+
+  bitwarden:
+    container_name: bitwarden
+    image: vaultwarden/server:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - SIGNUPS_ALLOWED=true
+    volumes:
+      - nfs_data:/data/
+    ports:
+      - 91:80/tcp #WebUI port
+    restart: unless-stopped
+    networks:
+      - frontend
+
+volumes:
+  nfs_data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/raid/nfs/docker/bitwarden_nfs_data"
+
+networks:
+  frontend:
+    external: true

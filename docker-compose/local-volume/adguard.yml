@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+
+  adguardhome:
+    container_name: adguardhome
+    image: adguard/adguardhome:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    volumes:
+      - adguard_work:/opt/adguardhome/work
+      - adguard_conf:/opt/adguardhome/conf #pour persister la configuration    
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 67:67/udp
+      - 68:68/tcp
+      - 80:80/tcp
+      - 443:443/tcp
+      - 853:853/tcp
+      - 3000:3000/tcp
+    restart: unless-stopped
+    networks:
+      macvlan-ntw:
+        ipv4_address: 192.168.1.160 #IP fixe assignée au peripherique reseau virtuel Adguardhome
+
+volumes:
+  adguard_work:
+  adguard_conf:
+
+networks:
+  macvlan-ntw:
+    external: true

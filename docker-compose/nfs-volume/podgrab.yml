@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+
+  podgrab:
+    container_name: podgrab
+    image: akhilrex/podgrab:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - CHECK_FREQUENCY=30 # Fréquence de rafraichissement en min
+      - PASSWORD=LA5mA8Lc # Optionel, le username = podgrab
+    volumes:
+      - nfs_config:/config
+      - nfs_assets:/assets
+    ports:
+      - 7080:8080 # Modifier à 7080 car mon port 8080 est déjà utilisé
+    restart: unless-stopped
+    networks:
+      - frontend
+
+volumes:
+  nfs_config:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/raid/nfs/docker/podgrab_nfs_config"
+  nfs_assets:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/raid/nfs/docker/podgrab_nfs_assets"
+
+networks:
+  frontend:
+    external: true

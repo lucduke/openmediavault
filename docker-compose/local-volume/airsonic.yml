@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+
+  airsonic:
+    container_name: airsonic
+    image: lscr.io/linuxserver/airsonic-advanced:latest
+    devices:
+      - /dev/snd:/dev/snd
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - TZ=Europe/Paris
+      - JAVA_OPTS=-Xms256m -Xmx256m
+    volumes:
+      - /mnt/media/playlists:/playlists
+      - /mnt/media/podcasts:/podcasts
+      - /mnt/media/musique:/music
+      - airsonic_config:/config
+    ports:
+      - 4040:4040
+    restart: unless-stopped
+    networks:
+      - frontend
+
+volumes:
+  airsonic_config:
+
+networks:
+  frontend:
+    external: true

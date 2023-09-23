@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  heimdall:
+    container_name: heimdall
+    image: lscr.io/linuxserver/heimdall:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - TZ=Europe/Paris
+    volumes:
+      - heimdall_config:/config
+    ports:
+      - 5080:80
+      - 5443:443
+    restart: unless-stopped
+    networks:
+      - frontend
+
+volumes:
+  heimdall_config:
+
+networks:
+  frontend:
+    external: true

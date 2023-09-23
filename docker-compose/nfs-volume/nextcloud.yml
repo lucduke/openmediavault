@@ -1,0 +1,69 @@
+version: "3.8"
+
+services:
+
+  nextcloud-app:
+    container_name: nextcloud-app
+    image: nextcloud:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - MYSQL_PASSWORD=<mySql_nextcloud_password>
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=nextcloud-db
+      - OVERWRITEPROTOCOL=https #pour permettre le bon fonctionnement du client Windows/Linux
+      - NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.domain.com
+    volumes:
+      - nfs_app:/var/www/html
+      - /mnt/documents:/smb-documents:ro
+      - /mnt/media:/smb-media:ro
+    ports:
+      - 8070:80
+    restart: unless-stopped
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - nextcloud-db
+
+  nextcloud-db:
+    container_name: nextcloud-db
+    image: mariadb:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - MYSQL_ROOT_PASSWORD=<mySql_root_password>
+      - MYSQL_PASSWORD=<mySql_nextcloud_password>
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+    volumes:
+      - nfs_db:/var/lib/mysql
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --skip-innodb-read-only-compressed
+    restart: unless-stopped
+    networks:
+      - backend
+
+volumes:
+  nfs_app:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/raid/nfs/docker/nextcloud_nfs_app"
+  nfs_db:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/raid/nfs/docker/nextcloud_nfs_db"
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true

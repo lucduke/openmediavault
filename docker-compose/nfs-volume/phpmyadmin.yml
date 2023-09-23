@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - PMA_ARBITRARY=1
+      - MYSQL_ROOT_PASSWORD=<mySQL_root_password>
+    volumes:
+      - nfs_app:/sessions
+    ports:
+      - 2080:80
+    restart: unless-stopped
+    networks:
+      - frontend
+      - backend
+
+volumes:
+  nfs_app:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=nas-hp.home,rw
+      device: ":/srv/raid/nfs/docker/phpmyadmin_nfs_app"
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true

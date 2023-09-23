@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  cloudflare:
+    container_name: cloudflare
+    image: docker.io/cloudflare/cloudflared:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    command: tunnel --no-autoupdate run
+    restart: unless-stopped
+    environment:
+      - TUNNEL_TOKEN=<token>
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true

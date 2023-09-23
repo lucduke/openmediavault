@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+    environment:
+      - TZ=Europe/Paris
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - DOCKER_CONFIG=/config
+      - WATCHTOWER_SCHEDULE=0 0 06 * * * # Pour vérification tous les jours à 06h00 
+      - WATCHTOWER_ROLLING_RESTART=true
+      - WATCHTOWER_TIMEOUT=30s
+      - WATCHTOWER_NOTIFICATIONS=email
+      - WATCHTOWER_NOTIFICATION_EMAIL_SUBJECTTAG=Watchtower-Minisforum
+      - WATCHTOWER_NOTIFICATION_EMAIL_FROM=prenom.nom@gmail.com
+      - WATCHTOWER_NOTIFICATION_EMAIL_TO=prenom.nom@gmail.com
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=smtp.gmail.com
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=587
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=prenom.nom@gmail.com
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=<gmail_password>
+      - WATCHTOWER_NOTIFICATION_EMAIL_DELAY=2
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped

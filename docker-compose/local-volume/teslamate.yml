@@ -1,0 +1,94 @@
+version: "3.8"
+
+services:
+
+  teslamate:
+    image: teslamate/teslamate:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - ENCRYPTION_KEY= #insert a secure key to encrypt your Tesla API tokens
+      - DATABASE_USER=teslamate
+      - DATABASE_PASS=secret
+      - DATABASE_NAME=teslamate
+      - DATABASE_HOST=database
+      - MQTT_HOST=mosquitto 
+    volumes:
+      - teslamate-import:/opt/app/import
+    ports:
+      - 4000:4000
+    restart: unless-stopped
+    cap_drop:
+      - all
+    networks:
+      - frontend
+      - backend
+
+  database:
+    image: postgres:13
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - POSTGRES_USER=teslamate
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=teslamate
+    volumes:
+      - teslamate-db:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - backend
+
+  grafana:
+    image: teslamate/grafana:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - DATABASE_USER=teslamate
+      - DATABASE_PASS=secret
+      - DATABASE_NAME=teslamate
+      - DATABASE_HOST=database
+    volumes:
+      - teslamate-grafana-data:/var/lib/grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    networks:
+      - frontend
+      - backend
+
+  mosquitto:
+    image: eclipse-mosquitto:1.6
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    volumes:
+      - mosquitto-conf:/mosquitto/config
+      - mosquitto-data:/mosquitto/data
+      - mosquitto-log:/mosquitto/log
+    ports:
+      - 1883:1883
+    restart: unless-stopped
+    networks:
+      - frontend
+      - backend
+
+volumes:
+  teslamate-import:
+  teslamate-db:
+  teslamate-grafana-data:
+  mosquitto-conf:
+  mosquitto-data:
+  mosquitto-log:
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true

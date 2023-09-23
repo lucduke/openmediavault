@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+
+  selenium:
+    container_name: selenium
+    image: selenium/standalone-chrome
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    ports:
+      - 4444:4444
+    restart: unless-stopped
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external: true

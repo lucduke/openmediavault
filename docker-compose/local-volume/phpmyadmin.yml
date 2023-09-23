@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:latest
+    labels:
+      - deunhealth.restart.on.unhealthy=true
+      - diun.enable=true
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - PMA_ARBITRARY=1
+      - MYSQL_ROOT_PASSWORD=<mySQL_root_password>
+    volumes:
+      - phpmyadmin:/sessions
+    ports:
+      - 2080:80
+    restart: unless-stopped
+    networks:
+      - frontend
+      - backend
+
+volumes:
+  phpmyadmin:
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true
