@@ -26,13 +26,13 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/deemix_nfs_downloads"
   nfs_config:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/deemix_nfs_config"
 
 networks:

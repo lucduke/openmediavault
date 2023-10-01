@@ -1,8 +1,8 @@
 version: "3.8"
 
 services:
-  mariadb-10.5:
-    container_name: mariadb-photoview
+  photoview-db:
+    container_name: photoview-db
     image: mariadb:10.5
     restart: unless-stopped
     labels:
@@ -15,12 +15,12 @@ services:
       - MYSQL_PASSWORD=photosecret
       - MYSQL_RANDOM_ROOT_PASSWORD=1
     volumes:
-      - nfs_mariadb:/var/lib/mysql
+      - db:/var/lib/mysql
     networks:
       - backend
 
   photoview:
-    container_name: photoview
+    container_name: photoview-app
     image: viktorstrate/photoview
     restart: unless-stopped
     labels:
@@ -30,10 +30,10 @@ services:
     ports:
       - 8080:80
     depends_on:
-      - mariadb-10.5
+      - photoview-db
     environment:
       - PHOTOVIEW_DATABASE_DRIVER=mysql
-      - PHOTOVIEW_MYSQL_URL=photoview:photosecret@tcp(mariadb-10.5)/photoview
+      - PHOTOVIEW_MYSQL_URL=photoview:photosecret@tcp(photoview-db)/photoview
       - PHOTOVIEW_LISTEN_IP=photoview
       - PHOTOVIEW_LISTEN_PORT=80
       - PHOTOVIEW_MEDIA_CACHE=/app/cache
@@ -45,23 +45,18 @@ services:
       - backend
 
 volumes:
-  nfs_mariadb:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: addr=nas-hp.home,rw
-      device: ":/srv/raid/nfs/docker/photoview_nfs_mariadb"
+  db:
   nfs_cache:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas.home,rw,soft,nfsvers=4
       device: ":/srv/no-raid/nfs1/docker/photoview_nfs_cache"
   nfs_photos:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas.home,rw,soft,nfsvers=4
       device: ":/srv/no-raid/nfs1/docker/photoview_nfs_photos"
 
 networks:

@@ -26,13 +26,13 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas-hp.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/podgrab_nfs_config"
   nfs_assets:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas-hp.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/podgrab_nfs_assets"
 
 networks:

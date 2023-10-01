@@ -63,7 +63,7 @@ services:
       - MYSQL_PASSWORD=<mySQL_photoprism_password>
       - MYSQL_DATABASE=photoprism-christophe
     volumes:
-      - nfs_db:/var/lib/mysql
+      - db:/var/lib/mysql
     ports:
       - 3307:3307
     command: mysqld --port=3307 --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=50
@@ -76,14 +76,10 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas-hp.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/photoprism_nfs_storage"
-  nfs_db:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: addr=nas-hp.home,rw
-      device: ":/srv/raid/nfs/docker/photoprism_nfs_db"
+  db:
+
 
 networks:
   frontend:

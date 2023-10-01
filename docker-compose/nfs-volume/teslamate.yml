@@ -37,7 +37,7 @@ services:
       - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=teslamate
     volumes:
-      - nfs_db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     restart: unless-stopped
     networks:
       - backend
@@ -80,41 +80,36 @@ services:
       - backend
 
 volumes:
+  db:
   nfs_import:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas-hp.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/teslamate_nfs_import"
-  nfs_db:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: addr=nas-hp.home,rw
-      device: ":/srv/raid/nfs/docker/teslamate_nfs_db"
   nfs_grafana-data:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas-hp.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/teslamate_nfs_grafana-data"
   nfs_mosquitto-conf:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas-hp.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/teslamate_nfs_mosquitto-conf"
   nfs_mosquitto-data:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas-hp.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/teslamate_nfs_mosquitto-data"
   nfs_mosquitto-log:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas-hp.home,rw,soft,nfsvers=4
       device: ":/srv/no-raid/nfs1/docker/teslamate_nfs_mosquitto-log"
 
 networks:

@@ -30,19 +30,19 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/airsonic_nfs_config"
   nfs_playlists:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas.home,rw,soft,nfsvers=4
       device: ":/srv/no-raid/nfs1/docker/airsonic_nfs_playlists"
   nfs_podcasts:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas.home,rw,soft,nfsvers=4
       device: ":/srv/no-raid/nfs1/docker/airsonic_nfs_podcasts"
 
 networks:

@@ -34,13 +34,13 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/diun_nfs_data"
   nfs_etc:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=nas-hp.home,rw
+      o: addr=nas.home,rw,soft,nfsvers=4
       device: ":/srv/raid/nfs/docker/diun_nfs_etc"
 
 networks:
