@@ -24,8 +24,8 @@ Cf. le tutoriel vidéo
 
 ```bash
 # Ajout du dépôt
-curl -fsSL https://pkgs.tailscale.com/stable/debian/buster.gpg | sudo apt-key add -
-curl -fsSL https://pkgs.tailscale.com/stable/debian/buster.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
 
 # Installation
 sudo apt update && sudo apt install -y tailscale
@@ -34,6 +34,7 @@ sudo apt update && sudo apt install -y tailscale
 sudo tailscale up
 
 # Pour connaitre son IP sur mon réseau privé virtuel
+tailscale ip -4
 ip addr show tailscale0
 ```
 
